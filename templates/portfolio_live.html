@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje investičné portfólio od 1/2022</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0e6da 0%, #e0d9d0 100%);
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .summary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .summary-box {
+            background: #f8f8f8;
+            border: 1px solid #e0d9d0;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-box h3 {
+            margin-top: 0;
+            color: #666;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .summary-value {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #212121;
+        }
+        
+        .summary-sub-value {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .akcie-container {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .akcia-box {
+            background: #f5f5dc; /* Kasmirova farba pre bunky */
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            align-items: center;
+            gap: 15px;
+        }
+
+        .akcia-box:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .akcia-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .akcia-label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .akcia-value {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .zisk { color: #53d289; font-weight: bold; }
+        .strata { color: #f26666; font-weight: bold; }
+
+        .ticker-cell {
+            display: flex;
+            align-items: center;
+            font-size: 1.4em;
+        }
+
+        .ticker-logo {
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: contain;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .summary-container {
+                grid-template-columns: 1fr;
+            }
+            .summary-box {
+                min-width: unset;
+            }
+            .akcia-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Moje investičné portfólio od 1/2022</h1>
+
+        <div class="summary-container">
+            <div class="summary-box">
+                <h3>Celková hodnota (USD)</h3>
+                <p class="summary-value">{{ "%.2f $"|format(celkova_hodnota_portfolia) }}</p>
+            </div>
+            <div class="summary-box">
+                <h3>Celková hodnota (EUR)</h3>
+                <p class="summary-value">{{ "%.2f €"|format(celkova_hodnota_portfolia_eur) }}</p>
+            </div>
+        </div>
+
+        <div class="summary-container">
+            <div class="summary-box">
+                <h3>Celkový zisk/strata</h3>
+                <p class="summary-value {% if celkovy_zisk_strata > 0 %}zisk{% else %}strata{% endif %}">
+                    {{ "%.2f $"|format(celkovy_zisk_strata) }}
+                </p>
+            </div>
+            <div class="summary-box">
+                <h3>Dividendy</h3>
+                <p class="summary-value zisk">
+                    {{ "%.2f $"|format(8699.17) }}
+                </p>
+            </div>
+            <div class="summary-box">
+                <h3>Uzavretý zisk</h3>
+                <p class="summary-value zisk">
+                    {{ "%.2f $"|format(2415.06) }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="akcie-container">
+            {% for akcia in udaje %}
+            <div class="akcia-box">
+                <div class="akcia-item ticker-cell">
+                    {% if akcia.ticker == 'CNI' %}
+                        <img src="/static/images/cni.png" alt="Logo CNI" class="ticker-logo">
+                    {% elif akcia.ticker == 'IVV' %}
+                        <img src="/static/images/ivv.png" alt="Logo IVV" class="ticker-logo">
+                    {% elif akcia.ticker == 'IEMG' %}
+                        <img src="/static/images/ivv.png" alt="Logo IEMG" class="ticker-logo">
+                    {% elif akcia.ticker == 'XLP' %}
+                        <img src="/static/images/spdr.png" alt="Logo XLP" class="ticker-logo">
+                    {% elif akcia.ticker == 'EQNR' %}
+                        <img src="/static/images/eqnr.png" alt="Logo EQNR" class="ticker-logo">
+                    {% elif akcia.ticker == 'IWM' %}
+                        <img src="/static/images/ivv.png" alt="Logo IWM" class="ticker-logo">
+                    {% elif akcia.ticker == 'VWCE.DE' %}
+                        <img src="/static/images/vanguard.png" alt="Logo VWCE" class="ticker-logo">
+                    {% elif akcia.ticker == 'SPY' %}
+                        <img src="/static/images/spy.png" alt="Logo SPY" class="ticker-logo">
+                    {% elif akcia.ticker == 'CNDX.L' %}
+                        <img src="/static/images/ivv.png" alt="Logo CNDX.L" class="ticker-logo">
+                    {% elif akcia.ticker == 'DTLA.L' %}
+                        <img src="/static/images/ivv.png" alt="Logo DTLA.L" class="ticker-logo">
+                    {% elif akcia.ticker == 'BRYN.DE' %}
+                        <img src="/static/images/bh.png" alt="Logo BRYN.DE" class="ticker-logo">
+                    {% elif akcia.ticker == 'IS04.DE' %}
+                        <img src="/static/images/ivv.png" alt="Logo IS04.DE" class="ticker-logo">
+                    {% elif akcia.ticker == 'DTLE.L' %}
+                        <img src="/static/images/ivv.png" alt="Logo DTLE.L" class="ticker-logo">
+                    {% else %}
+                        <img src="{{ akcia.logo_url }}" alt="Logo {{ akcia.ticker }}" class="ticker-logo">
+                    {% endif %}
+                    <span>{{ akcia.ticker }}</span>
+                </div>
+                <div class="akcia-item">
+                    <span class="akcia-label">Počet</span>
+                    <span class="akcia-value">{{ akcia.pocet }}</span>
+                </div>
+                <div class="akcia-item">
+                    <span class="akcia-label">Priemerná cena</span>
+                    <span class="akcia-value">
+                        {% if akcia.priemerna_cena is number %}
+                            {{ "%.2f $"|format(akcia.priemerna_cena) }}
+                        {% else %}
+                            {{ akcia.priemerna_cena }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="akcia-item">
+                    <span class="akcia-label">Aktuálna cena</span>
+                    <span class="akcia-value">
+                        {% if akcia.aktualna_cena is number %}
+                            {{ "%.2f $"|format(akcia.aktualna_cena) }}
+                        {% else %}
+                            {{ akcia.aktualna_cena }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="akcia-item">
+                    <span class="akcia-label">Celková hodnota</span>
+                    <span class="akcia-value">
+                        {% if akcia.celkova_hodnota is number %}
+                            {{ "%.2f $"|format(akcia.celkova_hodnota) }}
+                        {% else %}
+                            {{ akcia.celkova_hodnota }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="akcia-item">
+                    <span class="akcia-label">Zisk/Strata</span>
+                    <span class="akcia-value {% if akcia.zisk_strata is number and akcia.zisk_strata > 0 %}zisk{% else %}strata{% endif %}">
+                        {% if akcia.zisk_strata is number %}
+                            {{ "%.2f $"|format(akcia.zisk_strata) }}
+                        {% else %}
+                            {{ akcia.zisk_strata }}
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
