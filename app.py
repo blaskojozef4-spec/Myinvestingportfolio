@@ -29,12 +29,32 @@ portfolio = [
     {'ticker': 'DTLE.L', 'pocet': 9213, 'priemerna_cena': 3.0639, 'mena': 'EUR'},
 ]
 
+# Slovnik pre manualne mapovanie tickerov ETF na ich loga
+etf_logo_map = {
+    'IVV': 'static/images/ishares.png',
+    'XLP': 'static/images/spdr.png',
+    'IEMG': 'static/images/ishares.png',
+    'IWM': 'static/images/ishares.png', 
+    'CNDX.L': 'static/images/ishares.png',
+    'EQNR': 'static/images/eqnr.png',
+    'CNI': 'static/images/cni.png',
+    'VWCE.DE': 'static/images/vanguard.png',
+    'DTLA.L': 'static/images/ishares.png',
+    'BRYN.DE': 'static/images/bh.png',
+    'IS04.DE': 'static/images/ishares.png',
+    'DTLE.L': 'static/images/ishares.png',
+}
+
 def get_logo_url(ticker):
     """
     Pokusi sa ziskat URL loga z viacerych zdrojov.
     Vrati URL loga alebo None, ak logo nenajde.
     """
-    # 1. Pokus z yfinance
+    # 1. Pokus z manualneho mapovania (pre ETF a ine rucne pridane)
+    if ticker in etf_logo_map:
+        return etf_logo_map[ticker]
+
+    # 2. Pokus z yfinance
     try:
         akcia = yf.Ticker(ticker)
         info = akcia.info
@@ -44,7 +64,7 @@ def get_logo_url(ticker):
     except Exception as e:
         print(f"Nepodarilo sa ziskat logo z yfinance pre {ticker}: {e}")
 
-    # 2. Nahradny pokus z verejneho API na loga (Clearbit)
+    # 3. Nahradny pokus z verejneho API na loga (Clearbit)
     fallback_url = f"https://logo.clearbit.com/{ticker.lower()}.com"
     try:
         if requests.head(fallback_url, timeout=5).status_code == 200:
@@ -52,7 +72,7 @@ def get_logo_url(ticker):
     except Exception as e:
         print(f"Nepodarilo sa ziskat logo z clearbit pre {ticker}: {e}")
 
-    # 3. Posledna moznost pre tickery s bodkou
+    # 4. Posledna moznost pre tickery s bodkou
     if '.' in ticker:
         ticker_base = ticker.split('.')[0]
         fallback_url = f"https://logo.clearbit.com/{ticker_base.lower()}.com"
@@ -120,7 +140,7 @@ def index():
             if isinstance(zisk_strata, (int, float)):
                 celkovy_zisk_strata += zisk_strata
 
-            logo_url = get_logo_url(ticker) # Stále ponecháme, ak by sa načítalo z yfinance
+            logo_url = get_logo_url(ticker)
 
         except Exception as e:
             print(f"Chyba pri stahovani dat pre {ticker}: {e}")
@@ -142,13 +162,18 @@ def index():
     
     # Vypocet celkovej hodnoty portfolia v EUR
     celkova_hodnota_portfolia_eur = celkova_hodnota_portfolia / eur_usd_rate
+    
+    # NOVY RIADOK: Vypocet celkoveho zisku/straty v EUR
+    celkovy_zisk_strata_eur = celkovy_zisk_strata / eur_usd_rate
 
     return render_template(
         'portfolio_live.html', 
         udaje=aktualne_udaje, 
         celkova_hodnota_portfolia=celkova_hodnota_portfolia, 
         celkovy_zisk_strata=celkovy_zisk_strata,
-        celkova_hodnota_portfolia_eur=celkova_hodnota_portfolia_eur
+        celkova_hodnota_portfolia_eur=celkova_hodnota_portfolia_eur,
+        # NOVY RIADOK: Pridanie premennej do render_template
+        celkovy_zisk_strata_eur=celkovy_zisk_strata_eur
     )
 
 if __name__ == '__main__':
