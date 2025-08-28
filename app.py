@@ -1,5 +1,6 @@
 # app.py - Spustite tento subor v Pythone, aby ste videli aktualne ceny
 from flask import Flask, render_template
+from flask import url_for
 import yfinance as yf
 import requests
 
@@ -52,8 +53,8 @@ def get_logo_url(ticker):
     """
     # 1. Pokus z manualneho mapovania (pre ETF a ine rucne pridane)
     if ticker in etf_logo_map:
-        return etf_logo_map[ticker]
-
+        return url_for('static', filename=etf_logo_map[ticker].replace('static/', ''))
+                   
     # 2. Pokus z yfinance
     try:
         akcia = yf.Ticker(ticker)
