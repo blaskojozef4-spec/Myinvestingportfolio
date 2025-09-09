@@ -25,9 +25,9 @@ portfolio = [
     {'ticker': 'DTLA.L', 'pocet': 192.0405, 'priemerna_cena': 4.7417, 'mena': 'USD'},
     {'ticker': 'VWCE.DE', 'pocet': 144.200568, 'priemerna_cena': 112.58, 'mena': 'EUR'},
     {'ticker': 'BRYN.DE', 'pocet': 3.5001, 'priemerna_cena': 406.01, 'mena': 'EUR'},
-    {'ticker': 'VWCE.DE', 'pocet': 1.3525, 'priemerna_cena': 130.13, 'mena': 'EUR'},
+    {'ticker': 'VWCE.DE', 'pocet': 3.2919, 'priemerna_cena': 133.85, 'mena': 'EUR'},
     {'ticker': 'IS04.DE', 'pocet': 14676.5577, 'priemerna_cena': 3.0319, 'mena': 'EUR'},
-    {'ticker': 'DTLE.L', 'pocet': 9213, 'priemerna_cena': 3.0639, 'mena': 'EUR'},
+    {'ticker': 'DTLE.L', 'pocet': 9123, 'priemerna_cena': 3.0617, 'mena': 'EUR'},
 ]
 
 # Slovnik pre manualne mapovanie tickerov ETF na ich loga
@@ -179,3 +179,4 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
