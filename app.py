@@ -1,182 +1,146 @@
-# app.py - Spustite tento subor v Pythone, aby ste videli aktualne ceny
-from flask import Flask, render_template
-from flask import url_for
+"""Flask portfolio tracker – cleaned up and mobile-friendly."""
+from flask import Flask, render_template, request
 import yfinance as yf
-import requests
 
-# Inicializacia Flask aplikacie
 app = Flask(__name__)
 
-# Tvoje portfolio - mozes ho upravit.
-# Zmenili sme to na zoznam (list) slovnikov, aby sme mohli mat viac zaznamov
-# pre ten isty ticker (napr. od roznych brokerov).
+# --- Portfolio ---------------------------------------------------------------
 portfolio = [
-    {'ticker': 'CNI', 'pocet': 10.02743, 'priemerna_cena': 116.63, 'mena': 'USD'},
-    {'ticker': 'OXY', 'pocet': 36.78917, 'priemerna_cena': 55.55, 'mena': 'USD'},
-    {'ticker': 'ASML', 'pocet': 1.62641, 'priemerna_cena': 757.25, 'mena': 'USD'},
-    {'ticker': 'EQNR', 'pocet': 55.49544, 'priemerna_cena': 26.21, 'mena': 'USD'},
-    {'ticker': 'BRK-B', 'pocet': 21.09075, 'priemerna_cena': 452.79, 'mena': 'USD'},
-    {'ticker': 'IWM', 'pocet': 31.10993, 'priemerna_cena': 200.96, 'mena': 'USD'},
-    {'ticker': 'XLP', 'pocet': 61.27045, 'priemerna_cena': 76.71, 'mena': 'USD'},
-    {'ticker': 'IVV', 'pocet': 59.95522, 'priemerna_cena': 573.33, 'mena': 'USD'},
-    {'ticker': 'IEMG', 'pocet': 112.3176, 'priemerna_cena': 54.77, 'mena': 'USD'},
-    {'ticker': 'CNDX.L', 'pocet': 2.22, 'priemerna_cena': 1171, 'mena': 'USD'},
-    {'ticker': 'DTLA.L', 'pocet': 8458.54391, 'priemerna_cena': 4.4404, 'mena': 'USD'},
-    {'ticker': 'DTLA.L', 'pocet': 192.0405, 'priemerna_cena': 4.7417, 'mena': 'USD'},
-    {'ticker': 'VWCE.DE', 'pocet': 144.200568, 'priemerna_cena': 112.58, 'mena': 'EUR'},
-    {'ticker': 'BRYN.DE', 'pocet': 3.5001, 'priemerna_cena': 406.01, 'mena': 'EUR'},
-    {'ticker': 'VWCE.DE', 'pocet': 3.2919, 'priemerna_cena': 133.85, 'mena': 'EUR'},
-    {'ticker': 'IS04.DE', 'pocet': 14676.5577, 'priemerna_cena': 3.0319, 'mena': 'EUR'},
-    {'ticker': 'DTLE.L', 'pocet': 9123, 'priemerna_cena': 3.0617, 'mena': 'EUR'},
+    {'ticker': 'CNI',      'pocet': 10.02743,      'priemerna_cena': 116.63,   'mena': 'USD'},
+    {'ticker': 'XLK',      'pocet': 11.06935,      'priemerna_cena': 141.68,   'mena': 'USD'},
+    {'ticker': 'BRK-B',    'pocet': 21.09075,      'priemerna_cena': 452.79,   'mena': 'USD'},
+    {'ticker': 'IWM',      'pocet': 32.10317,      'priemerna_cena': 202.48,   'mena': 'USD'},
+    {'ticker': 'XLP',      'pocet': 55.87663,      'priemerna_cena': 76.29,    'mena': 'USD'},
+    {'ticker': 'IVV',      'pocet': 65.79541,      'priemerna_cena': 581.74,   'mena': 'USD'},
+    {'ticker': 'IEMG',     'pocet': 120.6516,      'priemerna_cena': 55.79,    'mena': 'USD'},
+    {'ticker': 'CNDX.L',   'pocet': 2.99,          'priemerna_cena': 1231.72,  'mena': 'USD'},
+    {'ticker': 'DTLA.L',   'pocet': 8275.63052713, 'priemerna_cena': 4.4404,   'mena': 'USD'},
+    {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
+    {'ticker': 'VWCE.DE',  'pocet': 144.17970732,  'priemerna_cena': 112.73,   'mena': 'EUR'},
+    {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
+    {'ticker': 'VWCE.DE',  'pocet': 55.3168,       'priemerna_cena': 145.38,   'mena': 'EUR'},
+    {'ticker': 'IS04.DE',  'pocet': 10029.1556,    'priemerna_cena': 2.9586,   'mena': 'EUR'},
+    {'ticker': 'IB1T.DE',  'pocet': 203.2996,      'priemerna_cena': 5.6652,   'mena': 'EUR'},
+    {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
+    {'ticker': 'TTD',      'pocet': 3.60142103,    'priemerna_cena': 30.82,    'mena': 'USD'},
+    {'ticker': 'ADBE',     'pocet': 0.61003748,    'priemerna_cena': 256.74,   'mena': 'USD'},
+    {'ticker': 'DUOL',     'pocet': 1.23418137,    'priemerna_cena': 120.89,   'mena': 'USD'},
+    {'ticker': 'FOO.DE',   'pocet': 0.50823982,    'priemerna_cena': 181.02,   'mena': 'EUR'},
+    {'ticker': 'MSF.DE',   'pocet': 1.584,         'priemerna_cena': 334.77,   'mena': 'EUR'},
+    {'ticker': 'RHM.DE',   'pocet': 0.1085,        'priemerna_cena': 1165.35,  'mena': 'EUR'},
+    {'ticker': 'SAP.DE',   'pocet': 0.5731,        'priemerna_cena': 156.16,   'mena': 'EUR'},
+    {'ticker': 'DSY.F',    'pocet': 3.2306,        'priemerna_cena': 18.10,    'mena': 'EUR'},
+    {'ticker': 'CCC3.DE',  'pocet': 0.82453825,    'priemerna_cena': 60.64,    'mena': 'EUR'},
+    {'ticker': 'NFC.DE',   'pocet': 2.7277,        'priemerna_cena': 64.294,   'mena': 'EUR'},
+    {'ticker': 'TOITF',    'pocet': 1.53557638,    'priemerna_cena': 76.66,    'mena': 'USD'},
+    {'ticker': 'BN',       'pocet': 2.9254095,     'priemerna_cena': 39.27,    'mena': 'USD'},
+    {'ticker': 'SPGI',     'pocet': 0.17422506,    'priemerna_cena': 394.15,   'mena': 'USD'},
+    {'ticker': 'AMZ.DE',   'pocet': 2.2503,        'priemerna_cena': 183.99,   'mena': 'EUR'},
+    {'ticker': 'MDO.DE',   'pocet': 0.43709734,    'priemerna_cena': 241.90,   'mena': 'EUR'},
+    {'ticker': 'DUT.F',    'pocet': 0.17652936,    'priemerna_cena': 356.88,   'mena': 'EUR'},
+    {'ticker': 'SXRV.DE',  'pocet': 0.0776,        'priemerna_cena': 1453.58,  'mena': 'EUR'},
+    {'ticker': '2PP.DE',   'pocet': 12.1182,       'priemerna_cena': 49.52,    'mena': 'EUR'},
+    {'ticker': 'PCE1.DE',  'pocet': 0.01058361,    'priemerna_cena': 3307.00,  'mena': 'EUR'},
+    {'ticker': 'FB2A.DE',  'pocet': 0.951,         'priemerna_cena': 511.92,   'mena': 'EUR'},
+    {'ticker': 'EGLN.L',   'pocet': 46.729,        'priemerna_cena': 71.9997,  'mena': 'EUR'},
+    {'ticker': 'CSU.TO',   'pocet': 0.28663695,    'priemerna_cena': 3050.20,  'mena': 'CAD'},
 ]
 
-# Slovnik pre manualne mapovanie tickerov ETF na ich loga
-etf_logo_map = {
-    'IVV': 'static/images/ishares.png',
-    'XLP': 'static/images/spdr.png',
-    'IEMG': 'static/images/ishares.png',
-    'IWM': 'static/images/ishares.png', 
-    'CNDX.L': 'static/images/ishares.png',
-    'EQNR': 'static/images/eqnr.png',
-    'CNI': 'static/images/cni.png',
-    'VWCE.DE': 'static/images/vanguard.png',
-    'DTLA.L': 'static/images/ishares.png',
-    'BRYN.DE': 'static/images/bh.png',
-    'IS04.DE': 'static/images/ishares.png',
-    'DTLE.L': 'static/images/ishares.png',
-}
+CLOSED_PROFIT_USD = 596.00
+TOTAL_DIVIDENDS_USD = 13384.75
 
-def get_logo_url(ticker):
-    """
-    Pokusi sa ziskat URL loga z viacerych zdrojov.
-    Vrati URL loga alebo None, ak logo nenajde.
-    """
-    # 1. Pokus z manualneho mapovania (pre ETF a ine rucne pridane)
-    if ticker in etf_logo_map:
-        return url_for('static', filename=etf_logo_map[ticker].replace('static/', ''))
-                   
-    # 2. Pokus z yfinance
+
+def get_fx_rate(pair: str, fallback: float = 1.0) -> float:
+    """Fetch an FX rate from Yahoo Finance, returning a fallback on failure."""
     try:
-        akcia = yf.Ticker(ticker)
-        info = akcia.info
-        logo_url = info.get('logo_url')
-        if logo_url and requests.head(logo_url, timeout=5).status_code == 200:
-            return logo_url
+        rate = yf.Ticker(pair).info.get('regularMarketPrice')
+        if rate:
+            return float(rate)
     except Exception as e:
-        print(f"Nepodarilo sa ziskat logo z yfinance pre {ticker}: {e}")
+        print(f"FX fetch failed for {pair}: {e}")
+    return fallback
 
-    # 3. Nahradny pokus z verejneho API na loga (Clearbit)
-    fallback_url = f"https://logo.clearbit.com/{ticker.lower()}.com"
-    try:
-        if requests.head(fallback_url, timeout=5).status_code == 200:
-            return fallback_url
-    except Exception as e:
-        print(f"Nepodarilo sa ziskat logo z clearbit pre {ticker}: {e}")
 
-    # 4. Posledna moznost pre tickery s bodkou
-    if '.' in ticker:
-        ticker_base = ticker.split('.')[0]
-        fallback_url = f"https://logo.clearbit.com/{ticker_base.lower()}.com"
-        try:
-            if requests.head(fallback_url, timeout=5).status_code == 200:
-                return fallback_url
-        except Exception as e:
-            pass
+def get_price(ticker: str, cache: dict):
+    """Return current price for a ticker, using an in-memory cache."""
+    if ticker in cache:
+        return cache[ticker]
+    info = yf.Ticker(ticker).info
+    price = info.get('currentPrice') or info.get('regularMarketPrice')
+    if price is None:
+        raise ValueError("Price unavailable")
+    cache[ticker] = price
+    return price
 
-    return None
 
 @app.route('/')
 def index():
-    """Hlavna stranka, ktora stiahne a zobrazi data z portfolia."""
-    aktualne_udaje = []
-    celkova_hodnota_portfolia = 0
-    celkovy_zisk_strata = 0
+    sort_by = request.args.get('sort_by', 'ticker')
 
-    # Ziskame aktualny kurz EUR/USD
-    try:
-        eur_usd_ticker = yf.Ticker('EURUSD=X')
-        eur_usd_rate = eur_usd_ticker.info['regularMarketPrice']
-    except Exception as e:
-        print(f"Chyba pri stahovani kurzu EUR/USD: {e}")
-        eur_usd_rate = 1.0  # Pouzijeme 1, ak sa nepodari stiahnut
+    eur_usd = get_fx_rate('EURUSD=X')
+    cad_usd = get_fx_rate('CADUSD=X')
+    usd_eur = 1 / eur_usd if eur_usd else 1.0
 
-    # Cache pre aktualne ceny, aby sme nestahovali data pre ten isty ticker viackrat
-    aktualne_ceny_cache = {}
+    price_cache: dict = {}
+    rows = []
+    total_value_usd = 0.0
+    total_pl_usd = 0.0
 
-    for data in portfolio:
-        ticker = data['ticker']
+    for i, pos in enumerate(portfolio, start=1):
+        ticker = pos['ticker']
         try:
-            # Stiahnutie aktualnej ceny akcie - pouzijeme cache
-            if ticker not in aktualne_ceny_cache:
-                akcia = yf.Ticker(ticker)
-                info = akcia.info
-                aktualna_cena = info.get('currentPrice')
-                
-                if aktualna_cena is None:
-                    aktualna_cena = info.get('regularMarketPrice')
-                
-                if aktualna_cena is None:
-                    raise ValueError("Aktuálna cena nie je k dispozícii.")
-                
-                aktualne_ceny_cache[ticker] = aktualna_cena
-            else:
-                aktualna_cena = aktualne_ceny_cache[ticker]
+            price = get_price(ticker, price_cache)
+            fx = {'USD': 1.0, 'EUR': eur_usd, 'CAD': cad_usd}[pos['mena']]
 
+            avg_usd = pos['priemerna_cena'] * fx
+            cur_usd = price * fx
+            value = cur_usd * pos['pocet']
+            pl = value - avg_usd * pos['pocet']
 
-            # Prepocet na USD ak je akcia v EUR
-            priemerna_cena_usd = data['priemerna_cena']
-            if data['mena'] == 'EUR':
-                priemerna_cena_usd = data['priemerna_cena'] * eur_usd_rate
-                aktualna_cena_usd = aktualna_cena * eur_usd_rate
-            else:
-                aktualna_cena_usd = aktualna_cena
-
-            # Vypocet hodnot v USD
-            celkova_hodnota = aktualna_cena_usd * data['pocet']
-            zisk_strata = (aktualna_cena_usd - priemerna_cena_usd) * data['pocet']
-            
-            if isinstance(celkova_hodnota, (int, float)):
-                celkova_hodnota_portfolia += celkova_hodnota
-            
-            if isinstance(zisk_strata, (int, float)):
-                celkovy_zisk_strata += zisk_strata
-
-            logo_url = get_logo_url(ticker)
-
+            total_value_usd += value
+            total_pl_usd += pl
         except Exception as e:
-            print(f"Chyba pri stahovani dat pre {ticker}: {e}")
-            aktualna_cena = 'Dáta nedostupné'
-            celkova_hodnota = 'Dáta nedostupné'
-            zisk_strata = 'Dáta nedostupné'
-            logo_url = None
-        
-        # Zostavenie udajov pre zobrazenie
-        aktualne_udaje.append({
+            print(f"Data error for {ticker}: {e}")
+            price = value = pl = 'Data nedostupné'
+
+        rows.append({
+            'index': i,
             'ticker': ticker,
-            'pocet': data['pocet'],
-            'priemerna_cena': data['priemerna_cena'],
-            'aktualna_cena': aktualna_cena,
-            'celkova_hodnota': celkova_hodnota,
-            'zisk_strata': zisk_strata,
-            'logo_url': logo_url
+            'mena': pos['mena'],
+            'pocet': pos['pocet'],
+            'priemerna_cena': pos['priemerna_cena'],
+            'aktualna_cena': price,
+            'celkova_hodnota': value,
+            'zisk_strata': pl,
         })
-    
-    # Vypocet celkovej hodnoty portfolia v EUR
-    celkova_hodnota_portfolia_eur = celkova_hodnota_portfolia / eur_usd_rate
-    
-    # NOVY RIADOK: Vypocet celkoveho zisku/straty v EUR
-    celkovy_zisk_strata_eur = celkovy_zisk_strata / eur_usd_rate
+
+    # Sorting
+    def num(v):
+        return v if isinstance(v, (int, float)) else float('-inf')
+
+    if sort_by == 'ticker':
+        rows.sort(key=lambda x: x['ticker'])
+    elif sort_by == 'celkova_hodnota':
+        rows.sort(key=lambda x: num(x['celkova_hodnota']), reverse=True)
+    elif sort_by == 'zisk_strata':
+        rows.sort(key=lambda x: num(x['zisk_strata']), reverse=True)
 
     return render_template(
-        'portfolio_live.html', 
-        udaje=aktualne_udaje, 
-        celkova_hodnota_portfolia=celkova_hodnota_portfolia, 
-        celkovy_zisk_strata=celkovy_zisk_strata,
-        celkova_hodnota_portfolia_eur=celkova_hodnota_portfolia_eur,
-        # NOVY RIADOK: Pridanie premennej do render_template
-        celkovy_zisk_strata_eur=celkovy_zisk_strata_eur
+        'portfolio_live.html',
+        udaje=rows,
+        celkova_hodnota_portfolia=total_value_usd,
+        celkova_hodnota_portfolia_eur=total_value_usd * usd_eur,
+        celkovy_zisk_strata=total_pl_usd,
+        celkovy_zisk_strata_eur=total_pl_usd * usd_eur,
+        closed_profit_usd=CLOSED_PROFIT_USD,
+        closed_profit_eur=CLOSED_PROFIT_USD * usd_eur,
+        total_dividends_usd=TOTAL_DIVIDENDS_USD,
+        total_dividends_eur=TOTAL_DIVIDENDS_USD * usd_eur,
+        eur_usd_rate=eur_usd,
+        cad_usd_rate=cad_usd,
+        sort_by=sort_by,
     )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
