@@ -40,7 +40,7 @@ portfolio = [
     {'ticker': 'DUT.F',    'pocet': 0.17652936,    'priemerna_cena': 356.88,   'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 0.0776,        'priemerna_cena': 1453.58,  'mena': 'EUR'},
     {'ticker': '2PP.DE',   'pocet': 12.1182,       'priemerna_cena': 49.52,    'mena': 'EUR'},
-    {'ticker': 'PCE1.DE',  'pocet': 0.01058361,    'priemerna_cena': 3307.00,  'mena': 'EUR'},
+    {'ticker': 'PCE1.DE',  'pocet': 0.26459025,    'priemerna_cena': 132.28,  'mena': 'EUR'},
     {'ticker': 'FB2A.DE',  'pocet': 0.951,         'priemerna_cena': 511.92,   'mena': 'EUR'},
     {'ticker': 'EGLN.L',   'pocet': 46.729,        'priemerna_cena': 71.9997,  'mena': 'EUR'},
     {'ticker': 'CSU.TO',   'pocet': 0.28663695,    'priemerna_cena': 3050.20,  'mena': 'CAD'},
