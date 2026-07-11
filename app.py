@@ -75,7 +75,8 @@ def get_price(ticker: str, cache: dict):
 
 @app.route('/')
 def index():
-    sort_by = request.args.get('sort_by', 'ticker')
+    # Načítanie parametra triedenia podľa odkazu v HTML (?sort=...)
+    sort_by = request.args.get('sort', 'ticker')
 
     eur_usd = get_fx_rate('EURUSD=X')
     cad_usd = get_fx_rate('CADUSD=X')
@@ -94,44 +95,59 @@ def index():
 
             avg_usd = pos['priemerna_cena'] * fx
             cur_usd = price * fx
-            value = cur_usd * pos['pocet']
-            pl = value - avg_usd * pos['pocet']
+            value_usd = cur_usd * pos['pocet']
+            pl_usd = value_usd - (avg_usd * pos['pocet'])
 
-            total_value_usd += value
-            total_pl_usd += pl
+            total_value_usd += value_usd
+            total_pl_usd += pl_usd
+
+            # Prepočty hodnôt pozície do EUR pre HTML zobrazenie
+            value_eur = value_usd * usd_eur
+            pl_eur = pl_usd * usd_eur
+            
+            # Výpočet percentuálneho zisku/straty pozície
+            total_cost_usd = avg_usd * pos['pocet']
+            pl_pct = (pl_usd / total_cost_usd * 100) if total_cost_usd else 0.0
+
         except Exception as e:
             print(f"Data error for {ticker}: {e}")
-            price = value = pl = 'Data nedostupné'
+            price = value_eur = pl_eur = pl_pct = 0.0
 
+        # Kľúče v slovníku sú pomenované presne podľa atribútov v HTML (p.ticker, p.value_eur...)
         rows.append({
             'index': i,
             'ticker': ticker,
             'mena': pos['mena'],
             'pocet': pos['pocet'],
             'priemerna_cena': pos['priemerna_cena'],
-            'aktualna_cena': price,
-            'celkova_hodnota': value,
-            'zisk_strata': pl,
+            'current_price': price,
+            'value_eur': value_eur,
+            'pl_eur': pl_eur,
+            'pl_pct': pl_pct,
         })
 
-    # Sorting
+    # Pomocná funkcia na bezpečné ošetrenie prípadných nečíselných hodnôt pri triedení
     def num(v):
         return v if isinstance(v, (int, float)) else float('-inf')
 
+    # Logika triedenia napasovaná na navigačné menu z HTML
     if sort_by == 'ticker':
         rows.sort(key=lambda x: x['ticker'])
-    elif sort_by == 'celkova_hodnota':
-        rows.sort(key=lambda x: num(x['celkova_hodnota']), reverse=True)
-    elif sort_by == 'zisk_strata':
-        rows.sort(key=lambda x: num(x['zisk_strata']), reverse=True)
+    elif sort_by == 'value':
+        rows.sort(key=lambda x: num(x['value_eur']), reverse=True)
+    elif sort_by == 'pl':
+        rows.sort(key=lambda x: num(x['pl_eur']), reverse=True)
+    elif sort_by == 'pl_pct':
+        rows.sort(key=lambda x: num(x['pl_pct']), reverse=True)
 
+    # Odosielanie premenných pomenovaných presne podľa Jinja2 tagov v šablóne
     return render_template(
         'portfolio_live.html',
-        udaje=rows,
-        celkova_hodnota_portfolia=total_value_usd,
-        celkova_hodnota_portfolia_eur=total_value_usd * usd_eur,
-        celkovy_zisk_strata=total_pl_usd,
-        celkovy_zisk_strata_eur=total_pl_usd * usd_eur,
+        positions=rows,
+        total_value_usd=total_value_usd,
+        total_value_eur=total_value_usd * usd_eur,
+        total_pl_usd=total_pl_usd,
+        total_pl_eur=total_pl_usd * usd_eur,
         closed_profit_usd=CLOSED_PROFIT_USD,
         closed_profit_eur=CLOSED_PROFIT_USD * usd_eur,
         total_dividends_usd=TOTAL_DIVIDENDS_USD,
