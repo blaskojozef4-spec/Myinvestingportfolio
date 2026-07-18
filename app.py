@@ -22,7 +22,7 @@ portfolio = [
     {'ticker': 'IS04.DE',  'pocet': 10029.1556,    'priemerna_cena': 2.9586,   'mena': 'EUR'},
     {'ticker': 'IB1T.DE',  'pocet': 203.2996,      'priemerna_cena': 5.6652,   'mena': 'EUR'},
     {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
-    {'ticker': 'TTD',      'pocet': 3.60142103,    'priemerna_cena': 30.82,    'mena': 'USD'},
+    {'ticker': 'TTD',      'pocet': 6.43156173,    'priemerna_cena': 25.18,    'mena': 'USD'},
     {'ticker': 'ADBE',     'pocet': 0.61003748,    'priemerna_cena': 256.74,   'mena': 'USD'},
     {'ticker': 'DUOL',     'pocet': 1.23418137,    'priemerna_cena': 120.89,   'mena': 'USD'},
     {'ticker': 'FOO.DE',   'pocet': 0.50823982,    'priemerna_cena': 181.02,   'mena': 'EUR'},
