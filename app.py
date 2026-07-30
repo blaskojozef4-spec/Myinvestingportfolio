@@ -18,10 +18,10 @@ portfolio = [
     {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
     {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
-    {'ticker': 'VWCE.DE',  'pocet': 55.3168,       'priemerna_cena': 145.38,   'mena': 'EUR'},
-    {'ticker': 'IS04.DE',  'pocet': 9918.0075,     'priemerna_cena': 2.9572,   'mena': 'EUR'},
+    {'ticker': 'VWCE.DE',  'pocet': 55.4177,       'priemerna_cena': 145.41,   'mena': 'EUR'},
+    {'ticker': 'IS04.DE',  'pocet': 9542.8434,     'priemerna_cena': 2.9479,   'mena': 'EUR'},
     {'ticker': 'IB1T.DE',  'pocet': 203.2996,      'priemerna_cena': 5.6652,   'mena': 'EUR'},
-    {'ticker': 'SEMI.AS',  'pocet': 38.000,        'priemerna_cena': 18.508,   'mena': 'EUR'},
+    {'ticker': 'SEMI.AS',  'pocet': 48.000,        'priemerna_cena': 18.224,   'mena': 'EUR'},
     {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
     {'ticker': 'TTD',      'pocet': 7.10030994,    'priemerna_cena': 24.40,    'mena': 'USD'},
     {'ticker': 'ADBE',     'pocet': 0.7145088,     'priemerna_cena': 250.98,   'mena': 'USD'},
@@ -37,14 +37,14 @@ portfolio = [
     {'ticker': 'AMZ.DE',   'pocet': 2.2503,        'priemerna_cena': 183.99,   'mena': 'EUR'},
     {'ticker': 'MDO.DE',   'pocet': 0.56668697,    'priemerna_cena': 239.50,   'mena': 'EUR'},
     {'ticker': 'DUT.F',    'pocet': 0.17652936,    'priemerna_cena': 356.88,   'mena': 'EUR'},
-    {'ticker': 'SXRV.DE',  'pocet': 0.218,         'priemerna_cena': 1436.30,  'mena': 'EUR'},
+    {'ticker': 'SXRV.DE',  'pocet': 0.7986,         'priemerna_cena': 1388.53,  'mena': 'EUR'},
     {'ticker': 'PCE1.DE',  'pocet': 0.26459025,    'priemerna_cena': 132.28,  'mena': 'EUR'},
-    {'ticker': 'FB2A.DE',  'pocet': 1.0073,        'priemerna_cena': 513.06,   'mena': 'EUR'},
+    {'ticker': 'FB2A.DE',  'pocet': 1.0924,        'priemerna_cena': 509.71,   'mena': 'EUR'},
     {'ticker': 'EGLN.L',   'pocet': 46.729,        'priemerna_cena': 71.9997,  'mena': 'EUR'},
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 553.73
+CLOSED_PROFIT_USD = 327.06
 TOTAL_DIVIDENDS_USD = 13384.75
 
 
