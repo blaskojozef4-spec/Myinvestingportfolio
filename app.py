@@ -35,7 +35,7 @@ portfolio = [
     {'ticker': 'BN',       'pocet': 2.9254095,     'priemerna_cena': 39.27,    'mena': 'USD'},
     {'ticker': 'SPGI',     'pocet': 0.17422506,    'priemerna_cena': 394.15,   'mena': 'USD'},
     {'ticker': 'AMZ.DE',   'pocet': 2.2503,        'priemerna_cena': 183.99,   'mena': 'EUR'},
-    {'ticker': 'MDO.DE',   'pocet': 0.56668697,    'priemerna_cena': 239.50,   'mena': 'EUR'},
+    {'ticker': 'MDO.DE',   'pocet': 0.86660128,    'priemerna_cena': 237.40,   'mena': 'EUR'},
     {'ticker': 'DUT.F',    'pocet': 0.17652936,    'priemerna_cena': 356.88,   'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 0.7986,        'priemerna_cena': 1388.53,  'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 0.7258,        'priemerna_cena': 1373.90,  'mena': 'EUR'},
