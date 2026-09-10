@@ -43,7 +43,7 @@ portfolio = [
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 327.06
+CLOSED_PROFIT_USD = 1974.17
 TOTAL_DIVIDENDS_USD = 13384.75
 
 
