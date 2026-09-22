@@ -30,7 +30,7 @@ portfolio = [
     {'ticker': 'NKE.MU',   'pocet': 3.18906223,    'priemerna_cena': 32.925,   'mena': 'EUR'},
     {'ticker': 'NFC.DE',   'pocet': 4.8276,        'priemerna_cena': 63.259,   'mena': 'EUR'},
     {'ticker': 'TOITF',    'pocet': 1.79983054,    'priemerna_cena': 74.87,    'mena': 'USD'},
-    {'ticker': 'BN',       'pocet': 5.69177353,    'priemerna_cena': 40.66,    'mena': 'USD'},
+    {'ticker': 'BN',       'pocet': 7.92070238,    'priemerna_cena': 39.93,    'mena': 'USD'},
     {'ticker': 'SPGI',     'pocet': 0.20172574,    'priemerna_cena': 397.47,   'mena': 'USD'},
     {'ticker': 'AMZ.DE',   'pocet': 2.2503,        'priemerna_cena': 183.99,   'mena': 'EUR'},
     {'ticker': 'MDO.DE',   'pocet': 1.85396553,    'priemerna_cena': 231.30,   'mena': 'EUR'},
