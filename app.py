@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # --- Portfolio ---------------------------------------------------------------
 portfolio = [
-    {'ticker': 'IWM',      'pocet': 32.10317,      'priemerna_cena': 202.48,   'mena': 'USD'},
+    {'ticker': 'IWM',      'pocet': 32.82088,      'priemerna_cena': 204.22,   'mena': 'USD'},
     {'ticker': 'XLP',      'pocet': 55.87663,      'priemerna_cena': 76.29,    'mena': 'USD'},
     {'ticker': 'IVV',      'pocet': 83.79687,      'priemerna_cena': 621.84,   'mena': 'USD'},
     {'ticker': 'IEMG',     'pocet': 120.6516,      'priemerna_cena': 55.79,    'mena': 'USD'},
