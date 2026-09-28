@@ -18,7 +18,6 @@ portfolio = [
     {'ticker': 'VWCE.DE',  'pocet': 55.4177,       'priemerna_cena': 145.41,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 9542.8434,     'priemerna_cena': 2.9479,   'mena': 'EUR'},
     {'ticker': 'IB1T.DE',  'pocet': 203.2996,      'priemerna_cena': 5.6652,   'mena': 'EUR'},
-    {'ticker': 'SEMI.AS',  'pocet': 48.000,        'priemerna_cena': 18.224,   'mena': 'EUR'},
     {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
     {'ticker': 'ADBE',     'pocet': 0.7145088,     'priemerna_cena': 250.98,   'mena': 'USD'},
