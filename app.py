@@ -32,7 +32,7 @@ portfolio = [
 ]
 
 CLOSED_PROFIT_USD = 2938.34
-TOTAL_DIVIDENDS_USD = 13587.12
+TOTAL_DIVIDENDS_USD = 13587.82
 
 
 def get_fx_rate(pair: str, fallback: float = 1.0) -> float:
