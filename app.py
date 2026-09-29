@@ -18,6 +18,7 @@ portfolio = [
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 9929.3168,     'priemerna_cena': 2.9338,   'mena': 'EUR'},
     {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'},
+    {'ticker': 'MDO.DE',   'pocet': 1.85396553,    'priemerna_cena': 231.3,    'mena': 'EUR'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
     {'ticker': 'BN',       'pocet': 7.92070238,    'priemerna_cena': 39.93,    'mena': 'USD'},
     {'ticker': 'SXRV.DE',  'pocet': 1.0745,        'priemerna_cena': 1373.90,  'mena': 'EUR'},
