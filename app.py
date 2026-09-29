@@ -17,22 +17,16 @@ portfolio = [
     {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 9929.3168,     'priemerna_cena': 2.9338,   'mena': 'EUR'},
-    {'ticker': 'VGLA.DE',  'pocet': 86.10115309,   'priemerna_cena': 4.3795,   'mena': 'EUR'},
-    {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
+    {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
-    {'ticker': 'ADBE',     'pocet': 0.7145088,     'priemerna_cena': 250.98,   'mena': 'USD'},
-    {'ticker': 'DUOL',     'pocet': 1.23418137,    'priemerna_cena': 120.89,   'mena': 'USD'},
-    {'ticker': 'TOITF',    'pocet': 1.79983054,    'priemerna_cena': 74.87,    'mena': 'USD'},
     {'ticker': 'BN',       'pocet': 7.92070238,    'priemerna_cena': 39.93,    'mena': 'USD'},
-    {'ticker': 'SPGI',     'pocet': 0.20172574,    'priemerna_cena': 397.47,   'mena': 'USD'},
-    {'ticker': 'MDO.DE',   'pocet': 1.85396553,    'priemerna_cena': 231.30,   'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 1.0745,        'priemerna_cena': 1373.90,  'mena': 'EUR'},
     {'ticker': 'EGLN.L',   'pocet': 60.8215,       'priemerna_cena': 71.7681,  'mena': 'EUR'},
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
 CLOSED_PROFIT_USD = 2938.34
-TOTAL_DIVIDENDS_USD = 13587.82
+TOTAL_DIVIDENDS_USD = 13592.63
 
 
 def get_fx_rate(pair: str, fallback: float = 1.0) -> float:
