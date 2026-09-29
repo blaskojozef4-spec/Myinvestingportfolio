@@ -15,8 +15,8 @@ portfolio = [
     {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
     {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
-    {'ticker': 'VWCE.DE',  'pocet': 55.4177,       'priemerna_cena': 145.41,   'mena': 'EUR'},
-    {'ticker': 'IS04.DE',  'pocet': 9542.8434,     'priemerna_cena': 2.9479,   'mena': 'EUR'},
+    {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
+    {'ticker': 'IS04.DE',  'pocet': 9929.3168,     'priemerna_cena': 2.9338,   'mena': 'EUR'},
     {'ticker': 'COIN',     'pocet': 1.59510962,    'priemerna_cena': 243.81,   'mena': 'USD'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
     {'ticker': 'ADBE',     'pocet': 0.7145088,     'priemerna_cena': 250.98,   'mena': 'USD'},
@@ -31,7 +31,7 @@ portfolio = [
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 2023.09
+CLOSED_PROFIT_USD = 2938.34
 TOTAL_DIVIDENDS_USD = 13587.12
 
 
