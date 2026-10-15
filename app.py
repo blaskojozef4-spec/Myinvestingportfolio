@@ -21,7 +21,7 @@ portfolio = [
     {'ticker': 'MDO.DE',   'pocet': 1.85396553,    'priemerna_cena': 231.3,    'mena': 'EUR'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
     {'ticker': 'IBKR',     'pocet': 0.1918,        'priemerna_cena': 90.15,    'mena': 'USD'},
-    {'ticker': 'SXRV.DE',  'pocet': 1.0745,        'priemerna_cena': 1373.90,  'mena': 'EUR'},
+    {'ticker': 'SXRV.DE',  'pocet': 1.4026,        'priemerna_cena': 1424.20,  'mena': 'EUR'},
     {'ticker': 'BN',       'pocet': 7.92070238,    'priemerna_cena': 39.93,    'mena': 'USD'},
     {'ticker': 'EGLN.L',   'pocet': 60.8215,       'priemerna_cena': 71.7681,  'mena': 'EUR'},
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
