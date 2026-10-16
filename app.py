@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # --- Portfolio ---------------------------------------------------------------
 portfolio = [
-    {'ticker': 'IWM',      'pocet': 32.82088,      'priemerna_cena': 204.22,   'mena': 'USD'},
-    {'ticker': 'XLP',      'pocet': 55.87663,      'priemerna_cena': 76.29,    'mena': 'USD'},
+    {'ticker': 'IWM',      'pocet': 36.520244,     'priemerna_cena': 211.06,   'mena': 'USD'},
+    {'ticker': 'XLP',      'pocet': 44.484836,     'priemerna_cena': 75.30,    'mena': 'USD'},
     {'ticker': 'IVV',      'pocet': 83.79687,      'priemerna_cena': 621.84,   'mena': 'USD'},
     {'ticker': 'IEMG',     'pocet': 120.6516,      'priemerna_cena': 55.79,    'mena': 'USD'},
     {'ticker': 'CNDX.L',   'pocet': 2.99,          'priemerna_cena': 1231.72,  'mena': 'USD'},
@@ -16,9 +16,10 @@ portfolio = [
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
     {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
-    {'ticker': 'IS04.DE',  'pocet': 9929.3168,     'priemerna_cena': 2.9338,   'mena': 'EUR'},
-    {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'},
-    {'ticker': 'MDO.DE',   'pocet': 1.85396553,    'priemerna_cena': 231.3,    'mena': 'EUR'},
+    {'ticker': 'IS04.DE',  'pocet': 9556.2243,     'priemerna_cena': 2.9205,   'mena': 'EUR'},
+    {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'}, 
+    {'ticker': 'VGLA.DE',  'pocet': 228.2465,      'priemerna_cena': 4.3810,   'mena': 'EUR'},
+    {'ticker': 'MDO.DE',   'pocet': 2.3189563,     'priemerna_cena': 228.4,    'mena': 'EUR'},
     {'ticker': 'TTD',      'pocet': 8.78143409,    'priemerna_cena': 22.35,    'mena': 'USD'},
     {'ticker': 'IBKR',     'pocet': 0.1918,        'priemerna_cena': 90.15,    'mena': 'USD'},
     {'ticker': 'SXRV.DE',  'pocet': 1.4026,        'priemerna_cena': 1424.20,  'mena': 'EUR'},
@@ -27,7 +28,7 @@ portfolio = [
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 2894.76
+CLOSED_PROFIT_USD = 2732.17
 TOTAL_DIVIDENDS_USD = 13596.42
 
 
