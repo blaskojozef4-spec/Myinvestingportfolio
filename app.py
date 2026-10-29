@@ -15,6 +15,7 @@ portfolio = [
     {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
     {'ticker': 'BRYN.DE',  'pocet': 24.3303,       'priemerna_cena': 410.32,   'mena': 'EUR'},
+    {'ticker': 'ABEA.DE',  'pocet': 1.9087,        'priemerna_cena': 262.05,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 9556.2243,     'priemerna_cena': 2.9205,   'mena': 'EUR'},
     {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'}, 
@@ -28,7 +29,7 @@ portfolio = [
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 2732.17
+CLOSED_PROFIT_USD = 2627.90
 TOTAL_DIVIDENDS_USD = 13596.42
 
 
