@@ -18,7 +18,7 @@ portfolio = [
     {'ticker': 'ABEA.DE',  'pocet': 1.9087,        'priemerna_cena': 262.05,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 8182.1778,     'priemerna_cena': 2.8722,   'mena': 'EUR'},
-    {'ticker': 'SEMI.NL',  'pocet': 70,            'priemerna_cena': 15.558,   'mena': 'EUR'},
+    {'ticker': 'SEMI.AS',  'pocet': 70.000,        'priemerna_cena': 15.558,   'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 1.7536,        'priemerna_cena': 1410.54,  'mena': 'EUR'},
     {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'}, 
     {'ticker': 'VGLA.DE',  'pocet': 233.2465,      'priemerna_cena': 4.3785,   'mena': 'EUR'},
