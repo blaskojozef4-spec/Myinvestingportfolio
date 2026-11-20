@@ -14,7 +14,7 @@ portfolio = [
     {'ticker': 'DTLA.L',   'pocet': 8275.63052713, 'priemerna_cena': 4.4404,   'mena': 'USD'},
     {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
-    {'ticker': 'BRYN.DE',  'pocet': 21.6298,       'priemerna_cena': 410.67,   'mena': 'EUR'},
+    {'ticker': 'BRYN.DE',  'pocet': 20.6767,       'priemerna_cena': 410.90,   'mena': 'EUR'},
     {'ticker': 'ABEA.DE',  'pocet': 1.9087,        'priemerna_cena': 262.05,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 7821.3754,     'priemerna_cena': 2.7568,   'mena': 'EUR'},
@@ -27,11 +27,11 @@ portfolio = [
     {'ticker': 'IBKR',     'pocet': 0.4016,        'priemerna_cena': 84.91,    'mena': 'USD'},
     {'ticker': 'SXRV.DE',  'pocet': 3.0526,        'priemerna_cena': 1417.70,  'mena': 'EUR'},
     {'ticker': 'BN',       'pocet': 7.92070238,    'priemerna_cena': 39.93,    'mena': 'USD'},
-    {'ticker': 'EGLN.L',   'pocet': 60.8215,       'priemerna_cena': 71.7681,  'mena': 'EUR'},
+    {'ticker': 'EGLN.L',   'pocet': 68.7048,       'priemerna_cena': 70.8137,  'mena': 'EUR'},
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 2211.15
+CLOSED_PROFIT_USD = 2335.78
 TOTAL_DIVIDENDS_USD = 13596.42
 
 
