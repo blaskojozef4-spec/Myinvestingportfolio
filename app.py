@@ -14,11 +14,11 @@ portfolio = [
     {'ticker': 'DTLA.L',   'pocet': 8275.63052713, 'priemerna_cena': 4.4404,   'mena': 'USD'},
     {'ticker': 'DTLA.L',   'pocet': 192.0405,      'priemerna_cena': 4.7417,   'mena': 'USD'},
     {'ticker': 'VWCE.DE',  'pocet': 145.38962679,  'priemerna_cena': 113.16,   'mena': 'EUR'},
-    {'ticker': 'BRYN.DE',  'pocet': 14.8783,       'priemerna_cena': 406.38,   'mena': 'EUR'},
-    {'ticker': 'ABEA.DE',  'pocet': 1.9087,        'priemerna_cena': 262.05,   'mena': 'EUR'},
+    {'ticker': 'BRYN.DE',  'pocet': 14.6869,       'priemerna_cena': 406.00,   'mena': 'EUR'},
+    {'ticker': 'ABEA.DE',  'pocet': 1.9812,        'priemerna_cena': 261.73,   'mena': 'EUR'},
     {'ticker': 'VWCE.DE',  'pocet': 78.8349,       'priemerna_cena': 152.71,   'mena': 'EUR'},
     {'ticker': 'IS04.DE',  'pocet': 6376.4975,     'priemerna_cena': 2.7821,   'mena': 'EUR'},
-    {'ticker': 'SEMI.AS',  'pocet': 70.000,        'priemerna_cena': 15.558,   'mena': 'EUR'},
+    {'ticker': 'SEMI.AS',  'pocet': 76.000,        'priemerna_cena': 15.501,   'mena': 'EUR'},
     {'ticker': 'SXRV.DE',  'pocet': 7.6738,        'priemerna_cena': 1367.96,  'mena': 'EUR'},
     {'ticker': 'VGLA.DE',  'pocet': 252.85855901,  'priemerna_cena': 4.3742,   'mena': 'EUR'}, 
     {'ticker': 'VGLA.DE',  'pocet': 521.2565,      'priemerna_cena': 4.2544,   'mena': 'EUR'},
@@ -31,7 +31,7 @@ portfolio = [
     {'ticker': 'CSU.TO',   'pocet': 0.3048237,     'priemerna_cena': 3025.75,  'mena': 'CAD'},
 ]
 
-CLOSED_PROFIT_USD = 2287.55
+CLOSED_PROFIT_USD = 2305.29
 TOTAL_DIVIDENDS_USD = 13596.42
 
 
